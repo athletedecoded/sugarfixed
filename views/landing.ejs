@@ -1,83 +1,90 @@
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#!" class="brand-logo"><i class="material-icons">camera</i>SugarFixed</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a class="modal-trigger" href="#myModal">Log In</a></li>
-                <li><a href="#">Sign Up</a></li>
+<%- include ("./partials/toasts") %>
+<%- include ("./partials/navigation") %>
 
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <!-- <li><a class="modal-trigger" data-target="logInModal">Log In</a></li> -->
-                <li><a href="/login">Log In</a></li>
-                <li><a href="/register">Sign Up</a></li>
-            </ul>
-        </div>
-    </nav>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <div class="container ">
+                <div class="camera" id="camera">
+                    <div>
+                        <canvas class="canvas" id="canvas"></canvas>
+                        <video class="video" id="video" poster="/images/camera.jpg" autoplay></video>
 
-
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
-            <div class="row center">
-                <div class="container ">
-                    <div class="camera" id="camera">
-                        <video class="video" id="video" width="550" height="392" poster="/images/camera.jpg" autoplay
-                            onplay="resizeCanvas(this)"></video>
-                        <canvas class="canvas" id="canvas" width="550" height="392"></canvas>
-                        <div class="loadCamera">
-                            <button id="loadCamera" onclick="allowCamera()"
-                                class="waves-effect waves-light loadCamera-button btn-large"><i
-                                    class="material-icons left">photo_camera</i>Open Camera</button>
-                            <button id="loadCamera" onclick="takePhoto()"
-                                class="waves-effect waves-light loadCamera-button btn-large"><i
-                                    class="material-icons left">camera</i>Scan Label</button>
-                        </div>
                     </div>
-                    <h5 class="header col s12 light">Take a photo of an ingredients list and SugarFixed will tell you
-                        what sugars are hiding in your food!</h5>
+                    <div class="cameraButtons">
+                        <button id="openCamera" class="waves-effect waves-light cameraButtons-button btn-large"><i
+                                id='openCameraIcon' class="material-icons left">power_settings_new</i>Open
+                            Camera</button>
+                        <button id="takePhoto" class="waves-effect waves-light cameraButtons-button btn-large"><i
+                                class="material-icons left">camera</i>Scan Label</button>
+                    </div>
                 </div>
-                <br><br>
+                <h5 class="header col s12 light">Take a photo of an ingredients list and SugarFixed will tell you
+                    what sugars are hiding in your food!</h5>
             </div>
+            <br><br>
         </div>
-        <div class="features container">
-            <div class="section">
+    </div>
+    <div class="features container">
+        <div class="section">
 
-                <!--   Features Section   -->
+            <!--   Features Section   -->
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center "><i class="fa fa-robot coloured"></i></h2>
+                        <h5 class="center">How does it work?</h5>
+
+                        <p class="light">SugarFixed utilises the latest AI character recognition algorithms to
+                            identify the sugars that are hiding in your food.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center "><i class="fa fa-utensils coloured"></i></h2>
+                        <h5 class="center">What's the point?</h5>
+                        <p class="light">Sugar goes by over 50 different names. It can be hard to remember them all
+                            if you're trying to eat healthy. Now you won't have to. </p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center"><i class="fa fa-paper-plane coloured"></i></h2>
+                        <h5 class="center">Contact Us</h5>
+
+                        <p class="light">We'd love to hear from you. Contact us or leave a message on the forum with
+                            any feedback you might
+                            have!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br><br>
+    </div>
+
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="row modal-content">
+            <form class="col s12">
+                <p>Enter a name for your product and we'll add it to your database.</p>
                 <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center "><i class="fa fa-robot"></i></h2>
-                            <h5 class="center">How does it work?</h5>
-
-                            <p class="light">SugarFixed utilises the latest AI character recognition algorithms to
-                                identify the sugars that are hiding in your food.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center "><i class="fa fa-utensils"></i></h2>
-                            <h5 class="center">What's the point?</h5>
-                            <p class="light">Sugar goes by over 50 different names. It can be hard to remember them all
-                                if you're trying to eat healthy. Now you won't have to. </p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center"><i class="fa fa-paper-plane"></i></h2>
-                            <h5 class="center">Contact Us</h5>
-
-                            <p class="light">We'd love to hear from you. Contact us or leave a message on the forum with
-                                any feedback you might
-                                have!
-                            </p>
-                        </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Product name" id="productName" type="text" class="validate">
+                        <!-- <input placeholder="Product name" id="productName"> -->
+                        <label for="productName">Product Name</label>
                     </div>
                 </div>
 
-            </div>
-            <br><br>
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <a class="waves-effect waves-light btn cameraButtons-button" id="formSubmit">submit</a>
+                    </div>
+                </div>
+            </form>
         </div>
+    </div>
