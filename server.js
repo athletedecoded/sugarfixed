@@ -4,6 +4,10 @@ const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const {
+    PORT,
+    SESSION_SECRET
+} = process.env;
 const db = require('./mongodbConnect');
 
 const bodyParser = require('body-parser');
@@ -28,7 +32,7 @@ app.set('view engine', 'ejs');
 // Middleware
 // Express session initialization
 app.use(session({
-    secret: 'Sug@rF!x3d2K21',
+    secret: SESSION_SECRET,
     saveUninitialized: true,
     resave: true
 }));
@@ -44,6 +48,7 @@ app.use(flash());
 app.use(function (req, res, next) {
     res.locals.successMessage = req.flash('success');
     res.locals.errorMessage = req.flash('error');
+    res.locals.user = req.user;
     next();
 });
 
@@ -56,7 +61,7 @@ app.use('/', require('./routes/users.js'));
 const visionRoute = require('./routes/vision');
 app.use('/api/vision', visionRoute);
 
-const port = process.env.PORT || 8080;
+const port = PORT || 8080;
 
 http.listen(port, () => {
     console.log("Listening on port ", port);
